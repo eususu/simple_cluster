@@ -1,9 +1,5 @@
 version: '3'
 services:
-    was1:
-        build: .
-    was2:
-        build: .
     nginx:
         image: nginx
         ports:
