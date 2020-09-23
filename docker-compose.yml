@@ -1,12 +1,14 @@
 version: '3'
 services:
+    was1:
+        build: .
+        volumes:
+            - ./war/:/tmp/war-deploy/
+    was2:
+        build: .
     nginx:
         image: nginx
         ports:
             - "8200:80"
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    was1:
-        build: .
-    was2:
-        build: .

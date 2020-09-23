@@ -138,34 +138,30 @@
       <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
       -->
 
-        <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"
-                channelSendOptions="8">
- 
-        <Manager className="org.apache.catalina.ha.session.DeltaManager"
-                expireSessionsOnShutdown="false"
-                notifyListenersOnReplication="true"/>
+      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster" channelSendOptions="8">
+        <Manager className="org.apache.catalina.ha.session.DeltaManager" expireSessionsOnShutdown="false" notifyListenersOnReplication="true"/>
  
         <Channel className="org.apache.catalina.tribes.group.GroupChannel">
         <Membership className="org.apache.catalina.tribes.membership.McastService"
                         address="228.0.0.4"
-                        port="45564"
+                        port="45566"
                         frequency="500"
-                        dropTime="3000"/>
+                        dropTime="12000"/>
         <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
-                        address="#IPADDRESS#" 
-                        port="4000"
+                        address="auto" 
+                        port="4001"
                         autoBind="100"
-                        selectorTimeout="5000"
+                        selectorTimeout="12000"
                         maxThreads="6"/>
  
         <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
-        <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
+        	<Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
         </Sender>
         <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
         <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor"/>
         </Channel>
-        <Valve className="org.apache.catalina.ha.tcp.ReplicationValve"
-                filter=""/>
+
+        <Valve className="org.apache.catalina.ha.tcp.ReplicationValve" filter=""/>
         <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
  
         <Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
@@ -175,10 +171,9 @@
                 watchEnabled="false"/>
  
         <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
-        </Cluster>
+      </Cluster>
 
-      <Host name="#HOSTNAME#"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true">
+      <Host name="#HOSTNAME#"  appBase="webapps" unpackWARs="true" autoDeploy="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
