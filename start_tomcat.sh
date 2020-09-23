@@ -1,3 +1,10 @@
 #!/bin/bash
 
-sudo docker-compose up --build 
+
+pushd $PWD
+cd tomcat
+sudo docker-compose up --build
+
+popd
+
+

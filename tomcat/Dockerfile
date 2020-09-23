@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y net-tools # for ifconfig
 RUN rm -rf  /usr/local/tomcat/webapps/ROOT
 RUN mkdir -p  /usr/local/tomcat/webapps/ROOT/WEB-INF
 
-ADD tomcat/webapps/ /usr/local/tomcat/webapps/
-ADD tomcat/conf/ /usr/local/tomcat/conf/
+ADD ./webapps/ /usr/local/tomcat/webapps/
+ADD ./conf/ /usr/local/tomcat/conf/
 
 ADD war/OSCAR-1.0.2.war /usr/local/tomcat/webapps/
 
