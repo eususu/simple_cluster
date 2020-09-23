@@ -5,10 +5,12 @@ RUN apt-get update && apt-get install -y net-tools # for ifconfig
  
 RUN rm -rf  /usr/local/tomcat/webapps/ROOT
 RUN mkdir -p  /usr/local/tomcat/webapps/ROOT/WEB-INF
-ADD index.jsp /usr/local/tomcat/webapps/ROOT/
-#ADD web.xml /usr/local/tomcat/conf
-ADD server.xml /usr/local/tomcat/conf
-ADD rootweb.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/web.xml
+
+ADD tomcat/webapps/ /usr/local/tomcat/webapps/
+ADD tomcat/conf/ /usr/local/tomcat/conf/
+
+ADD war/OSCAR-1.0.2.war /usr/local/tomcat/webapps/
+
 ADD pre.sh /usr/local/tomcat
  
 expose 8080
