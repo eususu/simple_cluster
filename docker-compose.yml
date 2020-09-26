@@ -6,7 +6,6 @@ services:
         args:
           conf: tomcat1/conf
           defaultWebApps: tomcat1/webapps
-          warPath: tomcat1/war/OSCAR-1.0.2.war
       ports:
         - "8201:8080"
     tomcatworker:
@@ -15,7 +14,6 @@ services:
         args:
           conf: tomcat2/conf
           defaultWebApps: tomcat1/webapps
-          warPath: tomcat2/war/OSCAR-1.0.2.war
       ports:
         - "8202:8080"
     nginx:
