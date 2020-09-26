@@ -1,0 +1,10 @@
+version: '3'
+services:
+    tomcat:
+      build:
+        context: .
+        args:
+          conf: ./conf
+          warPath: ./war/OSCAR-1.0.2.war
+      ports:
+        - "8201:8080"

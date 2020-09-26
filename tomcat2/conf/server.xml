@@ -19,7 +19,7 @@
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
  -->
-<Server port="8005" shutdown="SHUTDOWN">
+<Server port="8006" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -149,7 +149,7 @@
                         dropTime="12000"/>
         <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
                         address="auto" 
-                        port="4001"
+                        port="4000"
                         autoBind="100"
                         selectorTimeout="12000"
                         maxThreads="6"/>
@@ -164,16 +164,10 @@
         <Valve className="org.apache.catalina.ha.tcp.ReplicationValve" filter=""/>
         <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
  
-        <Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
-                tempDir="/tmp/war-temp/"
-                deployDir="/tmp/war-deploy/"
-                watchDir="/tmp/war-listen/"
-                watchEnabled="false"/>
- 
         <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
       </Cluster>
 
-      <Host name="#HOSTNAME#"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+      <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->

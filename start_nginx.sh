@@ -2,6 +2,6 @@
 
 pushd $PWD
 cd nginx
-sudo docker-compose up --build 
+docker-compose up --build 
 
 popd
