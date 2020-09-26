@@ -4,6 +4,7 @@ services:
       build:
         context: .
         args:
+          servername: manager
           conf: tomcat1/conf
           defaultWebApps: tomcat1/webapps
       ports:
@@ -12,6 +13,7 @@ services:
       build:
         context: .
         args:
+          servername: worker
           conf: tomcat2/conf
           defaultWebApps: tomcat1/webapps
       ports:

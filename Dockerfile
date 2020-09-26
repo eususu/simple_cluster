@@ -4,7 +4,8 @@ MAINTAINER lovian@yettiesoft.com
 
 ARG conf
 ARG defaultWebApps
-ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom
+ARG servername
+ENV JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dsusu.servername=$servername
 
 ADD $conf /usr/local/tomcat/conf
 RUN cp -r /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/

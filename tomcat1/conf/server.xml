@@ -129,7 +129,7 @@
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">
     -->
-    <Engine name="Catalina" defaultHost="localhost">
+    <Engine name="Catalina" defaultHost="tomcatmanager">
 
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
@@ -139,7 +139,7 @@
       -->
 
 
-      <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+      <Host name="tomcatmanager"  appBase="webapps" unpackWARs="true" autoDeploy="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
@@ -147,7 +147,9 @@
         <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
         -->
       <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster" channelSendOptions="8">
+<!--
         <Manager className="org.apache.catalina.ha.session.DeltaManager" expireSessionsOnShutdown="false" notifyListenersOnReplication="true"/>
+-->
  
         <Channel className="org.apache.catalina.tribes.group.GroupChannel">
         <Membership className="org.apache.catalina.tribes.membership.McastService"
@@ -171,12 +173,6 @@
 
         <Valve className="org.apache.catalina.ha.tcp.ReplicationValve" filter=""/>
         <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
- 
-        <Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
-                tempDir="/tmp/war-temp/"
-                deployDir="/tmp/war-deploy/"
-                watchDir="/tmp/war-listen/"
-                watchEnabled="false"/>
  
         <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
       </Cluster>
